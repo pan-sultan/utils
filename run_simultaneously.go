@@ -22,11 +22,18 @@ func main() {
 			cmd := os.Args[1]
 			arg := os.Args[i]
 
-			if err := exec.Command(cmd, arg).Start(); err != nil {
+			c := exec.Command(cmd, arg)
+			if err := c.Start(); err != nil {
+				fmt.Printf("%v %v ERROR: %v\n", cmd, arg, err)
+				return
+			}
+
+			if err := c.Wait(); err != nil {
 				fmt.Printf("%v %v ERROR: %v\n", cmd, arg, err)
 			} else {
 				fmt.Printf("%v %v done\n", cmd, arg)
 			}
+
 		}(i)
 	}
 
