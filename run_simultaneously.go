@@ -23,6 +23,8 @@ func main() {
 			arg := os.Args[i]
 
 			c := exec.Command(cmd, arg)
+			c.Stderr = os.Stderr
+			c.Stdout = os.Stdout
 			if err := c.Start(); err != nil {
 				fmt.Printf("%v %v ERROR: %v\n", cmd, arg, err)
 				return
