@@ -22,7 +22,6 @@ func main() {
 			cmd := os.Args[1]
 			arg := os.Args[i]
 
-			return
 			if err := exec.Command(cmd, arg).Start(); err != nil {
 				fmt.Printf("%v %v ERROR: %v\n", cmd, arg, err)
 			} else {
